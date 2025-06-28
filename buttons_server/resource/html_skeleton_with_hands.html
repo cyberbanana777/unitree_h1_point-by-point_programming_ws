@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Управление роботом</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 8px;
+            background-color: #f5efe8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        body {
+            transition: background-color 0.5s ease;
+            background-color: #f5efe8;
+        }
+
+        body.reset {
+            background-color: #f5efe8 !important;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (orientation: landscape) {
+            .container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                height: calc(100vh - 16px);
+            }
+
+            .left-panel,
+            .right-panel {
+                width: 48%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .left-panel {
+                justify-content: flex-start;
+            }
+
+            .right-panel {
+                justify-content: flex-start;
+            }
+
+            .status-panel {
+                width: 100%;
+                order: 3;
+                margin-top: 6px;
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+
+        .section {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        @media (orientation: landscape) {
+            .section {
+                margin-bottom: 6px;
+            }
+        }
+
+        .section-title {
+            background-color: #e0e0e0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-size: 0.7rem;
+            width: fit-content;
+            text-align: center;
+        }
+
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 8px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .vertical-button-row {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            /* Увеличиваем расстояние между кнопками */
+            margin-bottom: 8px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        @media (orientation: landscape) {
+            .communication-section .button-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+                gap: 6px;
+            }
+
+            .documents-section .vertical-button-row {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        .robot-btn {
+            min-width: 70px;
+            height: 70px;
+            background-color: #4a6baf;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex: 1 1 auto;
+        }
+
+        @media (orientation: landscape) {
+            .robot-btn {
+                min-width: 60px;
+                height: 60px;
+               font-size: 0.8rem;
+                padding: 3px;
+                margin: 0;
+            }
+
+            .documents-section .robot-btn {
+                width: 100%;
+            }
+
+            .btn-label {
+                font-size: 0.5rem;
+            }
+
+            .section-title {
+                font-size: 0.6rem;
+                padding: 3px 6px;
+            }
+        }
+
+        .robot-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .robot-btn.active {
+            background-color: #d40229 !important;
+            transform: scale(1.08);
+        }
+
+        .robot-btn.reset {
+            transform: scale(1);
+        }
+
+        .robot-btn:active {
+            background-color: #d40229 !important;
+            transform: scale(1.08);
+        }
+
+        .communication {
+            color: black;
+        }
+
+        #selfie {
+            background-color: #ff99e7;
+        }
+
+        #attention {
+            background-color: #ff99e7;
+        }
+
+        #photo {
+            background-color: #ff99e7;
+        }
+
+        #wave {
+            background-color: #ff99e7;
+        }
+
+        .handshake {
+            background-color: #04c417;
+        }
+
+        .documents {
+            background-color: #6e8cfa;
+        }
+
+        .btn-label {
+            display: block;
+            font-size: 0.6rem;
+            font-weight: normal;
+            margin-top: 2px;
+        }
+
+        .status-panel {
+            background-color: white;
+            border-radius: 6px;
+            padding: 8px;
+            margin-top: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .status-title {
+            margin: 0 0 4px 0;
+            font-size: 0.7rem;
+            color: #555;
+        }
+
+        .status-text {
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        .last-change {
+            color: #029b16;
+            font-size: 0.6rem;
+            color: #666666;
+            margin-top: 4px;
+            margin-bottom: 0;
+        }
+
+        .spacer {
+            height: 30px;
+            /* Добавляем пространство между кнопкой сброса и документами */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="section handshake-section">
+                <div class="section-title">Сброс в ноль</div>
+                <div class="button-row">
+                    <button class="robot-btn handshake" onclick="sendCommand('1_offer_hand', true)">
+                        Сброс
+                    </button>
+                </div>
+
+                <!-- Добавляем пространство между кнопками -->
+                <div class="spacer"></div>
+
+                <div class="section-title">Документы</div>
+                <div class="vertical-button-row">
+                    <button class="robot-btn documents" onclick="sendCommand('1_offer_docs', false)">
+                        1/7. Принять/Отдать
+                        <span class="btn-label">Документы</span>
+                    </button>
+                    <button class="robot-btn documents" onclick="sendCommand('2_grip_docs', false)">
+                        2/6. Взять/Опустить
+                        <span class="btn-label">Документы</span>
+                    </button>
+                    <button class="robot-btn documents" onclick="sendCommand('3_hold_docs', false)">
+                        3/5. Держать низко
+                        <span class="btn-label">У тела</span>
+                    </button>
+                    <button class="robot-btn documents" onclick="sendCommand('4_give_docs', false)">
+                        4. Держать высоко
+                        <span class="btn-label">Документы</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-panel">
+            <h3 class="status-title">Текущий статус:</h3>
+            <p class="status-text" id="statusText">Готов к работе</p>
+            <p class="last-change" id="lastChange">Ожидание команды</p>
+        </div>
+    </div>
+
+    <script>
+        let activeButton = null;
+
+        function rgbaToBackground(hex, opacity) {
+            let r = parseInt(hex.slice(1, 3), 16),
+                g = parseInt(hex.slice(3, 5), 16),
+                b = parseInt(hex.slice(5, 7), 16);
+
+            return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+        }
+
+        const commandBackgrounds = {
+            'photo': rgbaToBackground('#fc037b', 0.1),
+            'attention': rgbaToBackground('#fc037b', 0.1),
+            'selfie': rgbaToBackground('#fc037b', 0.1),
+            'wave': rgbaToBackground('#fc037b', 0.1),
+
+            '1_offer_hand': rgbaToBackground('#0eac00', 0.2),
+            '2_shake_hand': rgbaToBackground('#0eac00', 0.2),
+
+            '1_offer_docs': rgbaToBackground('#00a2ff', 0.1),
+            '2_grip_docs': rgbaToBackground('#00a2ff', 0.1),
+            '3_hold_docs': rgbaToBackground('#00a2ff', 0.1),
+            '4_give_docs': rgbaToBackground('#00a2ff', 0.1),
+            '5_release_docs': rgbaToBackground('#00a2ff', 0.1)
+        };
+
+        function resetAllButtons() {
+            if (activeButton) {
+                activeButton.classList.remove('active');
+                activeButton.classList.add('reset');
+                setTimeout(() => {
+                    activeButton.classList.remove('reset');
+                }, 200);
+                activeButton = null;
+            }
+            document.body.style.backgroundColor = '#f5efe8';
+            document.getElementById('statusText').textContent = 'Готов к работе';
+            document.getElementById('lastChange').textContent = 'Ожидание команды';
+        }
+
+        function sendCommand(command, isResetButton) {
+            console.log("Отправка команды:", command);
+
+            const statusTextElement = document.getElementById('statusText');
+            const lastChangeElement = document.getElementById('lastChange');
+
+            // Если это кнопка сброса - сбрасываем все
+            if (isResetButton) {
+                resetAllButtons();
+                // Отправка команды деактивации на сервер
+                fetch(`/activate?btn=none&active=false`)
+                    .then(response => response.json())
+                    .then(data => console.log("Ответ сервера:", data))
+                    .catch(error => console.error("Ошибка:", error));
+                return;
+            }
+
+            // Проверяем, является ли текущая кнопка активной
+            const isSameButton = activeButton && activeButton.onclick.toString().includes(`'${command}'`);
+
+            // Для кнопок документов игнорируем повторное нажатие
+            if (isSameButton) {
+                return;
+            }
+
+            // Если есть другая активная кнопка - деактивируем ее
+            if (activeButton) {
+                activeButton.classList.remove('active');
+                activeButton.classList.add('reset');
+                setTimeout(() => {
+                    activeButton.classList.remove('reset');
+                }, 200);
+            }
+
+            // Убираем класс reset со всех кнопок перед активацией новой
+            document.querySelectorAll('.robot-btn').forEach(btn => {
+                btn.classList.remove('reset');
+            });
+
+            // Активируем новую кнопку
+            const buttons = document.querySelectorAll('.robot-btn');
+            for (const btn of buttons) {
+                if (btn.onclick && btn.onclick.toString().includes(`'${command}'`)) {
+                    btn.classList.add('active');
+                    activeButton = btn;
+                    break;
+                }
+            }
+
+            // Устанавливаем фон и статус
+            const bgColor = commandBackgrounds[command] || '#f5efe8';
+            document.body.style.backgroundColor = bgColor;
+
+            const statusDescriptions = {
+                'wave': 'Машет рукой',
+                'photo': 'Приглашение на фото',
+                'attention': 'Привлечение внимания',
+                'selfie': 'Режим селфи',
+                '1_offer_hand': 'Подача руки',
+                '2_shake_hand': 'Рукопожатие',
+                '1_offer_docs': 'Готов принять документы',
+                '2_grip_docs': 'Взятие документов',
+                '3_hold_docs': 'Держит документы',
+                '4_give_docs': 'Передача документов',
+                '5_release_docs': 'Отпускание документов'
+            };
+
+            statusTextElement.textContent = statusDescriptions[command] || 'Команда выполнена';
+            lastChangeElement.textContent = 'Время: ' + new Date().toLocaleTimeString();
+
+            // Отправка команды активации на сервер
+            fetch(`/activate?btn=${command}&active=true`)
+                .then(response => response.json())
+                .then(data => console.log("Ответ сервера:", data))
+                .catch(error => console.error("Ошибка:", error));
+        }
+    </script>
+</body>
+
+</html> 

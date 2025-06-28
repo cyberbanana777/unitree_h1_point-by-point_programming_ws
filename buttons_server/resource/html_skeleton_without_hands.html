@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <title>Интерактивные кнопки</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+            <style>
+                html, body {
+                    overflow: hidden;
+                    height: 100%;
+                    margin: 0;
+                    padding: 0;
+                    touch-action: none;
+                }
+                :root {
+                    --button-size: min(40vw, 180px);
+                    --button-size-landscape: min(25vh, 200px); /* Увеличили размер для горизонтальной ориентации */
+                }
+                body {
+                    font-family: Arial, sans-serif;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 15px;
+                    min-height: 100vh;
+                    margin: 0;
+                    transition: background-color 0.5s;
+                    background-color: {{ 'white' if not active_button else buttons[active_button + '_bg'] }};
+                    position: fixed;
+                    width: 100%;
+                    height: 100%;
+                    overflow-y: hidden;
+                }
+                h1 {
+                    margin-bottom: 20px;
+                    color: #333;
+                    font-size: 1.5rem;
+                    text-align: center;
+                }
+                .buttons-container {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 15px;
+                    width: 100%;
+                    max-width: 400px;
+                    margin: 0 auto;
+                }
+                .big-btn {
+                    width: var(--button-size);
+                    height: var(--button-size);
+                    border: none;
+                    border-radius: 12px;
+                    cursor: pointer;
+                    font-size: 1.1rem;
+                    font-weight: bold;
+                    color: white;
+                    text-shadow: 1px 1px 2px black;
+                    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+                    transition: all 0.3s;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    opacity: 0.8;
+                    padding: 10px;
+                    box-sizing: border-box;
+                }
+                .big-btn:hover {
+                    transform: scale(1.03);
+                }
+                .big-btn.active {
+                    opacity: 1;
+                    transform: scale(1.05);
+                    box-shadow: 0 0 15px 3px rgba(255,255,255,0.5);
+                }
+                #selfie-btn {
+                    background-color: #ff4444;
+                }
+                #wave-btn {
+                    background-color: #44ff44;
+                }
+                #photo-btn {
+                    background-color: #4444ff;
+                }
+                #attention-btn {
+                    background-color: #ffff44;
+                    color: #333;
+                    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+                }
+                .btn-label {
+                    font-size: 0.9rem;
+                    margin-top: 8px;
+                    font-weight: normal;
+                    text-align: center;
+                }
+                .status {
+                    margin-top: 20px;
+                    padding: 12px;
+                    background: rgba(255,255,255,0.85);
+                    border-radius: 8px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    width: 100%;
+                    max-width: 400px;
+                    backdrop-filter: blur(4px);
+                }
+                .status h3 {
+                    margin-top: 0;
+                    font-size: 1rem;
+                }
+                .status p {
+                    margin-bottom: 8px;
+                    font-size: 0.9rem;
+                }
+                
+                /* Вертикальная ориентация (по умолчанию) */
+                @media (max-width: 360px) {
+                    :root {
+                        --button-size: 38vw;
+                    }
+                    .big-btn {
+                        font-size: 1rem;
+                    }
+                    .btn-label {
+                        font-size: 0.8rem;
+                    }
+                }
+                
+                /* Горизонтальная ориентация */
+                @media (orientation: landscape) {
+                    body {
+                        justify-content: center;
+                        padding: 10px;
+                    }
+                    .buttons-container {
+                        grid-template-columns: 1fr 1fr 1fr 1fr;
+                        max-width: none;
+                        gap: 15px; /* Увеличили промежутки */
+                    }
+                    .big-btn {
+                        width: var(--button-size-landscape);
+                        height: var(--button-size-landscape);
+                        font-size: 1.2rem; /* Увеличили шрифт */
+                        padding: 12px;
+                    }
+                    .btn-label {
+                        font-size: 0.9rem; /* Увеличили подписи */
+                        margin-top: 10px;
+                    }
+                    h1 {
+                        margin-bottom: 15px;
+                        font-size: 1.5rem;
+                    }
+                    .status {
+                        margin-top: 15px;
+                        padding: 10px;
+                        max-width: 90%;
+                    }
+                    .status h3 {
+                        font-size: 1.1rem;
+                    }
+                    .status p {
+                        font-size: 1rem;
+                    }
+                }
+                
+                /* Для очень широких экранов */
+                @media (orientation: landscape) and (min-width: 800px) {
+                    .big-btn {
+                        width: 180px; /* Фиксированный большой размер */
+                        height: 180px;
+                        font-size: 1.3rem;
+                    }
+                    .btn-label {
+                        font-size: 1rem;
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Выберите действие</h1>
+            
+            <div class="buttons-container">
+                <button id="selfie-btn" class="big-btn {{ 'active' if buttons.selfie else '' }}" 
+                        onclick="activateButton('selfie')">
+                    Сэлфи
+                    <span class="btn-label">Улыбнитесь!</span>
+                </button>
+                
+                <button id="wave-btn" class="big-btn {{ 'active' if buttons.wave else '' }}" 
+                        onclick="activateButton('wave')">
+                    Помахать рукой
+                    <span class="btn-label">Приветствие</span>
+                </button>
+                
+                <button id="photo-btn" class="big-btn {{ 'active' if buttons.photo else '' }}" 
+                        onclick="activateButton('photo')">
+                    Приглашаю на фото
+                    <span class="btn-label">Вместе веселее</span>
+                </button>
+                
+                <button id="attention-btn" class="big-btn {{ 'active' if buttons.attention else '' }}" 
+                        onclick="activateButton('attention')">
+                    Обратите внимание
+                    <span class="btn-label">Нажмите меня</span>
+                </button>
+            </div>
+
+            <div class="status">
+                <h3>Текущий статус:</h3>
+                <p id="statusText">
+                    {% if active_button %}
+                        {% if active_button == 'selfie' %}Сэлфи режим
+                        {% elif active_button == 'wave' %}Режим "Помахать рукой"
+                        {% elif active_button == 'photo' %}Режим "Приглашаю на фото"
+                        {% elif active_button == 'attention' %}Свободная кнопка активна
+                        {% endif %}
+                    {% else %}
+                        Режим не выбран
+                    {% endif %}
+                </p>
+                <p id="lastChange">
+                    {{ state_history[-1] if state_history else "Нет изменений" }}
+                </p>
+            </div>
+
+            <script>
+                const bgColors = {
+                    'selfie': 'rgba(255, 100, 100, 0.2)',
+                    'wave': 'rgba(100, 255, 100, 0.2)',
+                    'photo': 'rgba(100, 100, 255, 0.2)',
+                    'attention': 'rgba(255, 255, 100, 0.2)'
+                };
+
+                // Блокировка скролла
+                document.addEventListener('touchmove', function(e) {
+                    if (!e.target.classList.contains('big-btn')) {
+                        e.preventDefault();
+                    }
+                }, { passive: false });
+
+                function activateButton(btn) {
+                    fetch(`/activate?btn=${btn}`)
+                        .then(r => r.json())
+                        .then(data => {
+                            // Обновляем все кнопки
+                            document.querySelectorAll('.big-btn').forEach(button => {
+                                button.classList.remove('active');
+                            });
+                            
+                            // Активируем выбранную кнопку
+                            if (data.active) {
+                                document.getElementById(`${btn}-btn`).classList.add('active');
+                                document.body.style.backgroundColor = bgColors[btn];
+                            } else {
+                                document.body.style.backgroundColor = 'white';
+                            }
+                            
+                            // Обновляем статус
+                            let statusText = "Режим не выбран";
+                            if (data.active_button) {
+                                switch(data.active_button) {
+                                    case 'selfie': statusText = "Сэлфи режим"; break;
+                                    case 'wave': statusText = "Режим 'Помахать рукой'"; break;
+                                    case 'photo': statusText = "Режим 'Приглашаю на фото'"; break;
+                                    case 'attention': statusText = "Свободная кнопка активна"; break;
+                                }
+                            }
+                            document.getElementById('statusText').textContent = statusText;
+                            
+                            document.getElementById('lastChange').textContent = 
+                                data.message || "Изменения не зафиксированы";
+                        })
+                        .catch(err => {
+                            console.error('Ошибка:', err);
+                        });
+                }
+                
+               // Обработчики для мобильных устройств
+                document.querySelectorAll('.big-btn').forEach(btn => {
+                    btn.addEventListener('touchstart', function() {
+                        this.style.transform = 'scale(0.98)';
+                    });
+                    btn.addEventListener('touchend', function() {
+                        this.style.transform = '';
+                    });
+                });
+            </script>
+        </body>
+        </html>
