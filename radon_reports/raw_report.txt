@@ -1,0 +1,336 @@
+buttons_server/setup.py
+    LOC: 37
+    LLOC: 4
+    SLOC: 35
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 2
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+buttons_server/buttons_server/server_stand_up_with_hands.py
+    LOC: 206
+    LLOC: 86
+    SLOC: 160
+    Comments: 8
+    Single comments: 13
+    Multi: 3
+    Blank: 30
+    - Comment Stats
+        (C % L): 4%
+        (C % S): 5%
+        (C + M % L): 5%
+buttons_server/buttons_server/__init__.py
+    LOC: 0
+    LLOC: 0
+    SLOC: 0
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 0
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+buttons_server/buttons_server/hear_server.py
+    LOC: 111
+    LLOC: 65
+    SLOC: 70
+    Comments: 2
+    Single comments: 4
+    Multi: 14
+    Blank: 23
+    - Comment Stats
+        (C % L): 2%
+        (C % S): 3%
+        (C + M % L): 14%
+buttons_server/buttons_server/server_stand_up_without_hands.py
+    LOC: 167
+    LLOC: 73
+    SLOC: 101
+    Comments: 6
+    Single comments: 11
+    Multi: 23
+    Blank: 32
+    - Comment Stats
+        (C % L): 4%
+        (C % S): 6%
+        (C + M % L): 17%
+buttons_server/test/test_flake8.py
+    LOC: 25
+    LLOC: 7
+    SLOC: 9
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 52%
+        (C % S): 144%
+        (C + M % L): 52%
+buttons_server/test/test_pep257.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+buttons_server/test/test_copyright.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+position_writer/setup.py
+    LOC: 28
+    LLOC: 4
+    SLOC: 26
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 2
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+position_writer/position_writer/__init__.py
+    LOC: 0
+    LLOC: 0
+    SLOC: 0
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 0
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+position_writer/position_writer/position_writer_node.py
+    LOC: 241
+    LLOC: 169
+    SLOC: 190
+    Comments: 2
+    Single comments: 2
+    Multi: 0
+    Blank: 49
+    - Comment Stats
+        (C % L): 1%
+        (C % S): 1%
+        (C + M % L): 1%
+position_writer/test/test_flake8.py
+    LOC: 25
+    LLOC: 7
+    SLOC: 9
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 52%
+        (C % S): 144%
+        (C + M % L): 52%
+position_writer/test/test_pep257.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+position_writer/test/test_copyright.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+macros_writer/setup.py
+    LOC: 28
+    LLOC: 4
+    SLOC: 26
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 2
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+macros_writer/macros_writer/macros_writer.py
+    LOC: 79
+    LLOC: 40
+    SLOC: 41
+    Comments: 1
+    Single comments: 2
+    Multi: 16
+    Blank: 20
+    - Comment Stats
+        (C % L): 1%
+        (C % S): 2%
+        (C + M % L): 22%
+macros_writer/macros_writer/__init__.py
+    LOC: 0
+    LLOC: 0
+    SLOC: 0
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 0
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+macros_writer/test/test_flake8.py
+    LOC: 25
+    LLOC: 7
+    SLOC: 9
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 52%
+        (C % S): 144%
+        (C + M % L): 52%
+macros_writer/test/test_pep257.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+macros_writer/test/test_copyright.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+button_analyzer/setup.py
+    LOC: 44
+    LLOC: 4
+    SLOC: 42
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 2
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+button_analyzer/test/test_flake8.py
+    LOC: 25
+    LLOC: 7
+    SLOC: 9
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 52%
+        (C % S): 144%
+        (C + M % L): 52%
+button_analyzer/test/test_pep257.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+button_analyzer/test/test_copyright.py
+    LOC: 23
+    LLOC: 7
+    SLOC: 7
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 57%
+        (C % S): 186%
+        (C + M % L): 57%
+button_analyzer/button_analyzer/button_analyzer_without_hands.py
+    LOC: 166
+    LLOC: 105
+    SLOC: 116
+    Comments: 6
+    Single comments: 8
+    Multi: 6
+    Blank: 36
+    - Comment Stats
+        (C % L): 4%
+        (C % S): 5%
+        (C + M % L): 7%
+button_analyzer/button_analyzer/__init__.py
+    LOC: 0
+    LLOC: 0
+    SLOC: 0
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 0
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+button_analyzer/button_analyzer/button_analyzer_with_hands.py
+    LOC: 172
+    LLOC: 104
+    SLOC: 120
+    Comments: 8
+    Single comments: 10
+    Multi: 6
+    Blank: 36
+    - Comment Stats
+        (C % L): 5%
+        (C % S): 7%
+        (C + M % L): 8%
+** Total **
+    LOC: 1563
+    LLOC: 742
+    SLOC: 1019
+    Comments: 189
+    Single comments: 206
+    Multi: 68
+    Blank: 270
+    - Comment Stats
+        (C % L): 12%
+        (C % S): 19%
+        (C + M % L): 16%

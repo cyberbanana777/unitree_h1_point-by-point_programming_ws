@@ -19,6 +19,7 @@ run the script multiple times.
 '''
 
 import os
+
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
@@ -36,23 +37,18 @@ class MacrosWriterNode(Node):
         self.file = open(f"{self.abs_path}.txt", "w")
 
         self.subscription = self.create_subscription(
-            String,
-            TOPIC,
-            self.listener_callback,
-            10
+            String, TOPIC, self.listener_callback, 10
         )
 
         self.get_logger().info(f"Запуск записи макроса {self.macros_name}")
         self.get_logger().info("Нажмите Ctrl+C для остановки")
-        
 
     def listener_callback(self, msg):
-        """Запись в файл""" 
+        """Запись в файл"""
         raw_data = msg.data
         data = raw_data.split('$')[0]
         self.file.write(f'{data}\n')
         self.file.flush()
-    
 
 
 def main(args=None):
@@ -60,9 +56,9 @@ def main(args=None):
 
     macros_name = input("Введите имя нового макроса (без расширения): ")
     path_to_file = input("Введите АБСОЛЮТНЫЙ путь сохранения файла: ")
-    
+
     macros_writer_node = MacrosWriterNode(macros_name, path_to_file)
-    
+
     try:
         rclpy.spin(macros_writer_node)
 
@@ -73,11 +69,11 @@ def main(args=None):
         macros_writer_node.get_logger().info(
             f"Файл сохранён по пути: {macros_writer_node.abs_path}.txt"
         )
-        
+
     finally:
         macros_writer_node.destroy_node()
         rclpy.shutdown()
 
 
-if __name__ == '__main__':    
+if __name__ == '__main__':
     main(args=None)

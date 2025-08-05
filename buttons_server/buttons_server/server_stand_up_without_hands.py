@@ -25,16 +25,10 @@ from datetime import datetime
 from ament_index_python.packages import get_package_share_directory
 from flask import Flask, jsonify, render_template_string, request
 
-
 app = Flask(__name__)
 
 # Состояния кнопок
-buttons = {
-    "selfie": False,
-    "wave": False,
-    "photo": False,
-    "attention": False
-}
+buttons = {"selfie": False, "wave": False, "photo": False, "attention": False}
 active_button = None
 state_history = []
 lock = threading.Lock()
@@ -62,10 +56,10 @@ def activate():
     """Активация/деактивация кнопок через API."""
     global active_button, buttons
     btn = request.args.get('btn')
-    
+
     if btn not in buttons:
         return jsonify({"error": "Неизвестная кнопка"}), 400
-    
+
     with lock:
         # Если нажата уже активная кнопка - деактивируем
         if active_button == btn:
@@ -76,29 +70,31 @@ def activate():
             # Деактивируем предыдущую активную кнопку
             if active_button:
                 buttons[active_button] = False
-            
+
             # Активируем новую
             buttons[btn] = True
             active_button = btn
             message = get_button_message(btn, True)
-        
+
         log_change(message)
-        
-        return jsonify({
-            "active": buttons[btn],
-            "active_button": active_button,
-            "message": message,
-        })
+
+        return jsonify(
+            {
+                "active": buttons[btn],
+                "active_button": active_button,
+                "message": message,
+            }
+        )
 
 
 def get_button_message(btn, active):
     """
     Возвращает сообщение для лога в зависимости от состояния кнопки.
-    
+
     Args:
         btn (str): Идентификатор кнопки
         active (bool): Флаг активности кнопки
-    
+
     Returns:
         str: Текстовое описание изменения состояния
     """
@@ -123,16 +119,19 @@ def get_button_message(btn, active):
     return messages[btn][active]
 
 
-
 @app.route('/api/get_state')
 def get_state():
     """API-метод для получения текущего состояния кнопок."""
     with lock:
-        return jsonify({
-            "active_button": active_button,
-            "buttons": buttons,
-            "last_change": state_history[-1] if state_history else "Нет изменений",
-        })
+        return jsonify(
+            {
+                "active_button": active_button,
+                "buttons": buttons,
+                "last_change": (
+                    state_history[-1] if state_history else "Нет изменений"
+                ),
+            }
+        )
 
 
 def log_change(message):
@@ -148,11 +147,13 @@ def log_change(message):
 @app.route('/api/status')
 def api_status():
     """API-метод для проверки статуса сервера."""
-    return jsonify({
-        'active_button': active_button,
-        'buttons': buttons,
-        'timestamp': datetime.now().isoformat(),
-    })
+    return jsonify(
+        {
+            'active_button': active_button,
+            'buttons': buttons,
+            'timestamp': datetime.now().isoformat(),
+        }
+    )
 
 
 def main():

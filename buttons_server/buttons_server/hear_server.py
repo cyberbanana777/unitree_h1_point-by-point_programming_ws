@@ -17,10 +17,9 @@ contains information about the pressed button, or "None" if none were pressed.
 '''
 
 import rclpy
+import requests
 from rclpy.node import Node
 from std_msgs.msg import String
-
-import requests
 
 SERVER_URL = 'http://localhost:5000'
 FREQUENCY = 20.0  # Частота мониторинга в Герцах
@@ -39,7 +38,6 @@ class ButtonStatusReaderNode(Node):
 
         self.get_logger().info("Запуск мониторинга состояний кнопок.")
         self.get_logger().info("Нажмите Ctrl+C для остановки")
-    
 
     def get_current_status(self):
         """Получить текущее состояние кнопок"""
@@ -48,29 +46,32 @@ class ButtonStatusReaderNode(Node):
             response.raise_for_status()
             self.last_status = response.json()
             return self.last_status
-        
+
         except requests.exceptions.RequestException as e:
             self.get_logger().error(f"Ошибка подключения: {e}")
             return None
-    
 
     def timer_callback(self):
-        """Мониторинг изменений с заданным интервалом по таймеру""" 
+        """Мониторинг изменений с заданным интервалом по таймеру"""
         try:
             status = self.get_current_status()
             if status:
                 if status['active_button'] != self.last_active_button:
                     if status['active_button']:
                         active_button_name = self._get_button_name(
-                            status['active_button'])
+                            status['active_button']
+                        )
                         self.get_logger().info(
-                            f"Активна кнопка: {active_button_name}")
-                    
+                            f"Активна кнопка: {active_button_name}"
+                        )
+
                     else:
                         self.get_logger().info("Нет активных кнопок")
 
                     button_states = status['buttons']
-                    self.get_logger().info('Button states = ' + str(button_states))
+                    self.get_logger().info(
+                        'Button states = ' + str(button_states)
+                    )
 
                     self.last_active_button = status['active_button']
                     msg = String()
@@ -79,7 +80,6 @@ class ButtonStatusReaderNode(Node):
 
         except Exception as e:
             self.get_logger().error(f"Ошибка при получении данных: {e}")
-    
 
     def _get_button_name(self, button_id):
         """Преобразовать ID кнопки в читаемое название"""
@@ -87,10 +87,10 @@ class ButtonStatusReaderNode(Node):
             'selfie': 'Сэлфи',
             'wave': 'Помахать рукой',
             'photo': 'Приглашаю на фото',
-            'free': 'Свободная кнопка'
+            'free': 'Свободная кнопка',
         }
         return names.get(button_id, button_id)
-    
+
 
 def main(args=None):
     rclpy.init(args=args)
@@ -101,11 +101,11 @@ def main(args=None):
 
     except KeyboardInterrupt:
         button_status_reader_node.get_logger().info("Мониторинг остановлен.")
-    
+
     finally:
         button_status_reader_node.destroy_node()
         rclpy.shutdown()
 
 
-if __name__ == '__main__':    
+if __name__ == '__main__':
     main(args=None)
