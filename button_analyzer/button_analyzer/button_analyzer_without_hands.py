@@ -164,10 +164,6 @@ def main(args=None):
         node.get_logger().error(e)
 
     finally:
-        if node.impact != 0.0:
-            node.get_logger().info('down_9')  ### ??????
-            node.return_control()
-        node.return_control()  ### ??????
         node.get_logger().info('Node stoped.')
         node.destroy_node()
         rclpy.shutdown()
