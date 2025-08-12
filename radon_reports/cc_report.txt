@@ -1,7 +1,0 @@
-buttons_server/buttons_server/server_stand_up_with_hands.py
-    F 50:0 activate - B (8)
-position_writer/position_writer/position_writer_node.py
-    M 120:4 PoseWriterNode.listener_callback - B (8)
-
-2 blocks (classes, functions, methods) analyzed.
-Average complexity: B (8.0)

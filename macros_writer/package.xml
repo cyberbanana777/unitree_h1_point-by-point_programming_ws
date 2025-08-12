@@ -3,7 +3,7 @@
 <package format="3">
   <name>macros_writer</name>
   <version>1.0.0</version>
-  <description>This package includes script, which allows writing damp-files.</description>
+  <description>ROS 2 node for recording Unitree robot motion.</description>
   <maintainer email="sashagrachev2005@gmail.com">banana-killer</maintainer>
   <license>TODO: License declaration</license>
 

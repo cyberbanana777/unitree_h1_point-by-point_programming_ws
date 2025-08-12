@@ -17,7 +17,7 @@ setup(
     zip_safe=True,
     maintainer='banana-killer',
     maintainer_email='sashagrachev2005@gmail.com',
-    description='TODO: Package description',
+    description='ROS 2 GUI application for recording robot poses.',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={

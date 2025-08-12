@@ -22,9 +22,9 @@ setup(
     zip_safe=True,
     maintainer='banana-killer',
     maintainer_email='sashagrachev2005@gmail.com',
-    description='This package allows check a web page for robot control. '
-    '"hear_server" in this package send to topic "button_status" which button is pressed. '
-    'Buttons located on a web page. Web page is started by "server_stand_up',
+    description='This package allows you to process button clicks on a web page ' \
+    '"hear_server" in this package sends to topic "button_status" which button is pressed. ' \
+    'Buttons located on a web page. Web page is started by "server_stand_up_' ,
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={

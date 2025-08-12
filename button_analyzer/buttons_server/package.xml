@@ -3,9 +3,9 @@
 <package format="3">
   <name>buttons_server</name>
   <version>1.0.0</version>
-  <description>This package allows check a web page for robot control. ' \
-    '"hear_server" in this package send to topic "button_status" which button is pressed. ' \
-    'Buttons located on a web page. Web page is started by "server_stand_up' </description>
+  <description>This package allows you to process button clicks on a web page ' \
+    '"hear_server" in this package sends to topic "button_status" which button is pressed. ' \
+    'Buttons located on a web page. Web page is started by "server_stand_up_' </description>
   <maintainer email="sashagrachev2005@gmail.com">banana-killer</maintainer>
   <license>TODO: License declaration</license>
 
