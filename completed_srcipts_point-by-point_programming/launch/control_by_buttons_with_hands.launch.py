@@ -11,7 +11,10 @@ def generate_launch_description():
                 executable="server_stand_up_with_hands",
             ),
 
-            Node(package="buttons_server", executable="hear_server"),
+            Node(
+                package="buttons_server",
+                executable="hear_server",
+            ),
             
             Node(
                 package="button_analyzer",
