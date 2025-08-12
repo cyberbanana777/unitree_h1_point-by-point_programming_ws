@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>buttons_server</name>
+  <name>completed_srcipts_point-by-point_programming</name>
   <version>1.0.0</version>
-  <description>This package allows check a web page for robot control. ' \
-    '"hear_server" in this package send to topic "button_status" which button is pressed. ' \
-    'Buttons located on a web page. Web page is started by "server_stand_up' </description>
+  <description>
+    A package with python launcher files for running different
+    node configurations for point-by-point programming
+  </description>
   <maintainer email="sashagrachev2005@gmail.com">banana-killer</maintainer>
   <license>TODO: License declaration</license>
 
-  <depend>rclpy</depend>
-  <depend>sts_msgs</depend>
-  <depend>python3-requests</depend>
-  <depend>python3-flask</depend>
+  <exec_depend>ros2launch</exec_depend>
+  <exec_depend>buttons_server</exec_depend>
+  <exec_depend>button_analyzer</exec_depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
