@@ -4,7 +4,7 @@ package_name = 'position_writer'
 
 setup(
     name=package_name,
-    version='0.0.0',
+    version='1.0.0',
     packages=[package_name],
     data_files=[
         (
@@ -18,7 +18,7 @@ setup(
     maintainer='banana-killer',
     maintainer_email='sashagrachev2005@gmail.com',
     description='ROS 2 GUI application for recording robot poses.',
-    license='TODO: License declaration',
+    license='MIT',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [

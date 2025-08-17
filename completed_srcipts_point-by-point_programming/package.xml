@@ -8,7 +8,7 @@
     node configurations for point-by-point programming
   </description>
   <maintainer email="sashagrachev2005@gmail.com">banana-killer</maintainer>
-  <license>TODO: License declaration</license>
+  <license>MIT</license>
 
   <exec_depend>ros2launch</exec_depend>
   <exec_depend>buttons_server</exec_depend>

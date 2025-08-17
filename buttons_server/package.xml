@@ -7,7 +7,7 @@
     '"hear_server" in this package sends to topic "button_status" which button is pressed. ' \
     'Buttons located on a web page. Web page is started by "server_stand_up_' </description>
   <maintainer email="sashagrachev2005@gmail.com">banana-killer</maintainer>
-  <license>TODO: License declaration</license>
+  <license>MIT</license>
 
   <depend>rclpy</depend>
   <depend>sts_msgs</depend>

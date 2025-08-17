@@ -5,9 +5,10 @@
   <version>1.0.0</version>
   <description>ROS 2 node for recording Unitree robot motion.</description>
   <maintainer email="sashagrachev2005@gmail.com">banana-killer</maintainer>
-  <license>TODO: License declaration</license>
+  <license>MIT</license>
 
   <depend>rclpy</depend>
+  <depend>std_msgs</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>

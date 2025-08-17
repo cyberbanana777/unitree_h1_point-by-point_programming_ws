@@ -18,7 +18,7 @@ setup(
     maintainer='banana-killer',
     maintainer_email='sashagrachev2005@gmail.com',
     description='ROS 2 node for recording Unitree robot motion.',
-    license='TODO: License declaration',
+    license='MIT',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [

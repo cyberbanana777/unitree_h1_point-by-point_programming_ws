@@ -27,7 +27,7 @@ setup(
     maintainer_email='sashagrachev2005@gmail.com',
     description='ROS2 node for processing button presses and managing motion\
         sequences.',
-    license='TODO: License declaration',
+    license='MIT',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
