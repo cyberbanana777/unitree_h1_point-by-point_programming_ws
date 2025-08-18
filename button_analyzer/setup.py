@@ -1,5 +1,5 @@
 import os
-import glob
+from glob import glob
 
 from setuptools import setup
 
@@ -31,10 +31,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'button_analyzer_without_hands = button_analyzer.\
-                button_analyzer_without_hands:main',
-            'button_analyzer_with_hands = button_analyzer.\
-                button_analyzer_with_hands:main',
+            'button_analyzer_without_hands = button_analyzer.button_analyzer_without_hands:main',
+            'button_analyzer_with_hands = button_analyzer.button_analyzer_with_hands:main',
         ],
     },
 )
