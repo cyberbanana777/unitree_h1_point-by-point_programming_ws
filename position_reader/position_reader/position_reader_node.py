@@ -22,7 +22,7 @@ class PosePublisher(Node):
         self.impact_joint = 9
         
         # Параметры
-        self.declare_parameter('file_name', 'poses')
+        self.declare_parameter('file_name', 'pose_test')
         file_name = self.get_parameter('file_name').get_parameter_value().string_value
 
         package_share_dir = get_package_share_directory("position_reader")
@@ -67,9 +67,9 @@ class PosePublisher(Node):
             self.control_dt, self.timer_callback
         )
         # Точность совпадения позы
-        self.position_threshold_wrists = 0.3
-        self.position_threshold_body = 0.3
-        self.position_threshold_fingers = 0.1
+        self.position_threshold_wrists = 1
+        self.position_threshold_body = 1
+        self.position_threshold_fingers = 0.3
 
         self.achieve_body_pose = False
         self.achieve_fingers_pose = False
