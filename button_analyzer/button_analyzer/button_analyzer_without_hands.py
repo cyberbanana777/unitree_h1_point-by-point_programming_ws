@@ -58,7 +58,7 @@ class ButtonAnalyzer(Node):
         self.files = []
         for macros_name in self.macroses:
             file_path = os.path.join(
-                package_share_dir, f'{macros_name}_without_hands.txt'
+                package_share_dir, 'resource', f'{macros_name}_without_hands.txt'
             )
             with open(file_path, 'r') as f:
                 data = [line.rstrip('\n') for line in f]
@@ -70,9 +70,6 @@ class ButtonAnalyzer(Node):
 
         for i in self.macroses.keys():
             self.get_logger().info(f"macros_founded: {i}")
-            self.get_logger().info(
-                f"macros_include: {self.files[self.macroses[i]]}"
-            )
 
         self.last_pressed_button = "None"
 
@@ -88,7 +85,6 @@ class ButtonAnalyzer(Node):
 
     def listener_callback(self, msg):
         self.last_pressed_button = msg.data
-        self.get_logger().info(f'listener_callback = {msg.data}')
         if self.last_pressed_button != "None":
             self.impact = 1.0
 
@@ -124,14 +120,14 @@ class ButtonAnalyzer(Node):
             self.last_data = next(data)
             self.count_progress += 1
         except StopIteration:
-            self.get_logger().info("Function ends")
+            self.get_logger().debug("Function ends")
             self.iters[self.index] = iter(self.files[self.index])
             data = self.iters[self.index]
             self.last_data = next(data)
             self.count_progress = 0
 
         self.msg.data = self.last_data + '$' + str(self.impact)
-        self.get_logger().info(
+        self.get_logger().debug(
             f'Progress: {self.count_progress}/\
                 {len(self.files[self.index]) - 1}; \
                 Impact = {round(self.impact, 3)}'
