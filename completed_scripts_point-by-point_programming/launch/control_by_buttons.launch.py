@@ -18,6 +18,7 @@ def launch_setup(context, *args, **kwargs):
     hear_server_node = Node(
         package="buttons_server",
         executable="hear_server",
+        namespace='web_face',
     )
     
     # Choose config depended by 'mode'
@@ -25,20 +26,26 @@ def launch_setup(context, *args, **kwargs):
         button_analyzer_node = Node(
                 package="button_analyzer",
                 executable="button_analyzer_with_hands",
+                namespace='web_face',
+                remappings=[('positions_to_unitree', '/positions_to_unitree')],
         )
         button_server_node = Node(
                 package="buttons_server",
                 executable="server_stand_up_with_hands",
+                namespace='web_face',
         )
 
     elif mode == 'without_hands':
         button_analyzer_node = Node(
                 package="button_analyzer",
                 executable="button_analyzer_without_hands",
+                namespace='web_face',
+                remappings=[('positions_to_unitree', '/positions_to_unitree')],
         )
         button_server_node = Node(
                 package="buttons_server",
                 executable="server_stand_up_without_hands",
+                namespace='web_face',
         )
 
     else:
